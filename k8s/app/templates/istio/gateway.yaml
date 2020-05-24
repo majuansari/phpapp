@@ -1,0 +1,68 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: app-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - maju.127.0.0.1.nip.io
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: nginx
+  labels:
+    name: nginx
+spec:
+  hosts:
+  - '*'
+  gateways:
+  -  app-gateway
+  http:
+  - match:
+    - uri:
+        prefix: "/"
+    route:
+    - destination:
+        host: nginx
+        port:
+          number: 80
+---
+# apiVersion: networking.istio.io/v1alpha3
+# kind: VirtualService
+# metadata:
+#   name: app
+# spec:
+#   hosts:
+#   - "*"
+#   gateways:
+#   - app-gateway
+#   http:
+#   - match:
+#     - port: 80
+#     route:
+#     - destination:
+#         host: nginx
+#         port:
+#           number: 80
+# ---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: php
+spec:
+  hosts:
+  - php-service
+  tcp:
+  - match:
+    - port: 9000
+    route:
+    - destination:
+        host: php-service 
+---
