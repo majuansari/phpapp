@@ -6,6 +6,9 @@ nginx:
   enabled : false
   replicaCount: 1
 app:
+  image:
+    repository: ''
+    tag: ''
   ingress:
     enabled: true    
   replicaCount : 1

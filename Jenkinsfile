@@ -95,7 +95,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins-ci', containers: [
               
             sh 'helm list'
                 sh "helm lint ./${HELM_CHART_DIRECTORY}"
-                sh "helm upgrade --install --force --set image.tag=${BUILD_NUMBER} ${HELM_APP_NAME} ./${HELM_CHART_DIRECTORY}"
+                sh "helm upgrade --install --force --set image.repository=${REPOSITORY_URI} --set image.tag=${BUILD_NUMBER} ${HELM_APP_NAME} ./${HELM_CHART_DIRECTORY}"
                 sh "helm list | grep ${HELM_APP_NAME}"
             }
         }      

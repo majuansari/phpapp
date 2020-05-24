@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: php
-        image: docker.io/majuansari/phptest
+        image: {{ .Values.app.image }}
         ports:
         - containerPort: 9000
         resources:
