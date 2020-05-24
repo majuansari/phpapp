@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: php
-        image: {{ .Values.app.image }}
+        image: {{ .Values.app.image }}":"{{ .Values.app.tag }}
         ports:
         - containerPort: 9000
         resources:

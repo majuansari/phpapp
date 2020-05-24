@@ -7,8 +7,8 @@ nginx:
   replicaCount: 1
 app:
   image:
-    repository: ''
-    tag: ''
+    repository: 
+    tag: 
   ingress:
     enabled: true    
   replicaCount : 1
