@@ -64,7 +64,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins-ci', containers: [
         stage('Build Image'){
             container('docker'){
 
-        withCredentials([file(credentialsId: 'k8smajutest', variable: 'DOCKER_REPO_KEY_PATH')]) {
+        withCredentials([file(credentialsId: 'k8majutest', variable: 'DOCKER_REPO_KEY_PATH')]) {
                 sh 'docker login -u _json_key --password-stdin https://gcr.io/k8smajutest < ${DOCKER_REPO_KEY_PATH}'
 
                 sh "docker build -t ${REPOSITORY_URI}:${BUILD_NUMBER} ./docker"
