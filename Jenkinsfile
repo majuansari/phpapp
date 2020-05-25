@@ -92,8 +92,8 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins-ci', containers: [
         stage('Push Image'){
             container('docker'){
         withCredentials([file(credentialsId: 'gcrjson', variable: 'DOCKER_REPO_KEY_PATH')]) {
-                sh 'docker login -u _json_key --password-stdin https://gcr.io/k8majutest < ${DOCKER_REPO_KEY_PATH}'                sh 'docker image ls'
-                sh "docker push ${REPOSITORY_URI}:${BUILD_NUMBER}"
+                sh "docker login -u _json_key --password-stdin https://gcr.io/k8majutest < ${DOCKER_REPO_KEY_PATH} \
+                 && docker push ${REPOSITORY_URI}:${BUILD_NUMBER}"
               }                 
             }
         }
