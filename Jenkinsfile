@@ -38,7 +38,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins-ci', containers: [
   ) {
     node('mypod') {
 
-        def REPOSITORY_URI = "majuansari/phpapp"
+        def REPOSITORY_URI = "gcr.io/k8majutest/phpapp"
         def HELM_APP_NAME = "php-app"
         def HELM_CHART_DIRECTORY = "k8s/app"
 
