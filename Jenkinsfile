@@ -64,11 +64,19 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins-ci', containers: [
         stage('Build Image'){
             container('docker'){
 
-              withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                sh 'docker login --username="${USERNAME}" --password="${PASSWORD}"'
+        withCredentials([file(credentialsId: 'k8smajutest', variable: 'DOCKER_REPO_KEY_PATH')]) {
+                sh 'docker login -u _json_key --password-stdin https://gcr.io/k8smajutest < ${DOCKER_REPO_KEY_PATH}'
+
                 sh "docker build -t ${REPOSITORY_URI}:${BUILD_NUMBER} ./docker"
                 sh 'docker image ls' 
-              } 
+                
+                
+                        }
+              // withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+              //   sh 'docker login --username="${USERNAME}" --password="${PASSWORD}"'
+              //   sh "docker build -t ${REPOSITORY_URI}:${BUILD_NUMBER} ./docker"
+              //   sh 'docker image ls' 
+              // } 
                 
             }
         } 
