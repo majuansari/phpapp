@@ -64,19 +64,8 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins-ci', containers: [
         stage('Build Image'){
             container('docker'){
 
-        withCredentials([file(credentialsId: 'gcrjson', variable: 'DOCKER_REPO_KEY_PATH')]) {
-                sh 'docker login -u _json_key --password-stdin https://gcr.io/k8majutest < ${DOCKER_REPO_KEY_PATH}'
-
-                sh "docker build -t ${REPOSITORY_URI}:${BUILD_NUMBER} ./docker"
-                sh 'docker image ls' 
-                
-                
-                        }
-              // withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-              //   sh 'docker login --username="${USERNAME}" --password="${PASSWORD}"'
-              //   sh "docker build -t ${REPOSITORY_URI}:${BUILD_NUMBER} ./docker"
-              //   sh 'docker image ls' 
-              // } 
+              sh "docker build -t ${REPOSITORY_URI}:${BUILD_NUMBER} ./docker"
+              sh 'docker image ls' 
                 
             }
         } 
@@ -91,7 +80,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins-ci', containers: [
 
         stage('Push Image'){
             container('docker'){
-        withCredentials([file(credentialsId: 'gcrjson', variable: 'DOCKER_REPO_KEY_PATH')]) {
+              withCredentials([file(credentialsId: 'gcrjson', variable: 'DOCKER_REPO_KEY_PATH')]) {
                 sh "docker login -u _json_key --password-stdin https://gcr.io/k8majutest < ${DOCKER_REPO_KEY_PATH} \
                  && docker push ${REPOSITORY_URI}:${BUILD_NUMBER}"
               }                 
