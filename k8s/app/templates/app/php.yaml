@@ -1,21 +1,21 @@
 apiVersion: apps/v1beta2 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: php
+  name: {{ .Values.app.name }}
 spec:
   selector:
     matchLabels:
-      app: php
+      app: {{ .Values.app.name }}
   replicas: {{ .Values.app.replicaCount }}
   template: # create pods using pod definition in this template
     metadata:
       # unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is
       # generated from the deployment name
       labels:
-        app: php
+        app: {{ .Values.app.name }}
     spec:
       containers:
-      - name: php
+      - name: {{ .Values.app.name }}
         image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
         ports:
         - containerPort: 9000
@@ -33,7 +33,7 @@ metadata:
   name: php-service
 spec:
   selector:
-    app: php
+    app: {{ .Values.app.name }}
   type: ClusterIP
   ports:
   - protocol: TCP
