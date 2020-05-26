@@ -19,13 +19,25 @@ spec:
         image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
         ports:
         - containerPort: 9000
+{{- with .Values.app.resources }}
         resources:
-          requests:
-            memory: "16Mi"
-            cpu: "1m"
-          limits:
-            memory: "128Mi"
-            cpu: "20m"
+{{ toYaml . | indent 10 }}
+{{- end }}
+
+{{- with .Values.app.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+{{- end }}
+
+{{- with .Values.app.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+{{- end }}
+
+{{- with .Values.app.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+{{- end }}
 ---
 kind: Service
 apiVersion: v1
