@@ -28,6 +28,7 @@ spec:
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
+          subPath: mysql  #fix for empty directory https://stackoverflow.com/a/53343386
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
