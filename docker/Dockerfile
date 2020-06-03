@@ -2,7 +2,47 @@ FROM php:7.1.14-fpm
 
 MAINTAINER Maju Ansari
 
+RUN apt-get update
 
+RUN apt-get -y install vim
+RUN apt-get install -y \
+    freetds-dev \
+    libicu-dev \
+    libpq-dev \
+    libmcrypt-dev \
+ && cp -s /usr/lib/x86_64-linux-gnu/libsybdb.so /usr/lib/ \
+ && docker-php-ext-configure pdo_mysql \
+ && docker-php-ext-install \
+    intl \
+    mbstring \
+    mcrypt \
+    pcntl \
+    pdo_dblib \
+    pdo_mysql \
+    pdo_pgsql \
+    pgsql \
+    zip \
+    opcache
+
+
+RUN apt-get install -y --no-install-recommends \
+        libmagickwand-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && pecl install imagick-3.4.3 \
+    && docker-php-ext-enable imagick
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN  apt-get update \
+	 && apt-get install -y libgmp-dev re2c libmhash-dev
+RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
+RUN docker-php-ext-configure gmp
+RUN docker-php-ext-install gmp
+
+#Install php-soap
+RUN apt-get install -y libxml2-dev \
+    && pear install -a SOAP-0.13.0 \
+    && docker-php-ext-install soap;
 
 EXPOSE 9000 9111
 # COPY ./conf/www.conf /usr/local/etc/php-fpm.d/www.conf
