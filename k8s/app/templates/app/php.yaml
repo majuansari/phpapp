@@ -38,6 +38,9 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
 {{- end }}
+      volumes:
+        - emptyDir: {}
+          name: codebase
 ---
 kind: Service
 apiVersion: v1

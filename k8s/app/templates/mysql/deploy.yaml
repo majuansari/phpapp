@@ -20,6 +20,8 @@ spec:
           # Use secret in real usage
         - name: MYSQL_ROOT_PASSWORD
           value: 1234maju
+        - name: MYSQL_DATABASE
+          value: blog          
         ports:
         - containerPort: 3306
           name: mysql

@@ -34,5 +34,5 @@
 #just php app without istio 
 
 templates/istio/
-templates/mysql
+# templates/mysql
 templates/redis

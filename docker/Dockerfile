@@ -11,7 +11,7 @@ COPY ./conf/www.conf /usr/local/etc/php-fpm/www.conf
 COPY ./conf/php.ini /usr/local/etc/php/php.ini
 
 COPY src/ /var/www/html
-COPY src/ /code/public/
+COPY src/blog /code/
 # cleanup
 USER root
 RUN apt-get clean && \
