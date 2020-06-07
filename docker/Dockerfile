@@ -33,6 +33,7 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+RUN ls
 RUN  apt-get update \
 	 && apt-get install -y libgmp-dev re2c libmhash-dev
 RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
@@ -53,7 +54,7 @@ COPY ./conf/php.ini /usr/local/etc/php/php.ini
 COPY ./src/blog /code/
 COPY ./cmd /cmd
 
-RUN cd /code/
+WORKDIR /code
 # set requirement privileges
 RUN chown -R 9000:9000 storage && \
 	chown -R 9000:9000 bootstrap/cache && \
