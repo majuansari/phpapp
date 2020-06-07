@@ -60,7 +60,7 @@ spec:
       initContainers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
-          command: [ "sh", "-c", "/init.sh && sleep 3000" ]
+          command: [ "sh", "-c", "/init.sh && sleep 60" ]
           imagePullPolicy: Always
           volumeMounts:
             - name: code
