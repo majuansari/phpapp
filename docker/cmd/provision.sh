@@ -12,7 +12,3 @@ php artisan view:clear
 php artisan route:clear
 php artisan config:clear
 
-echo "Sleep starting..."
- 
-sleep 300
-echo "Sleep end..."
