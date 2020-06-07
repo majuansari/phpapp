@@ -1,7 +1,7 @@
 cd /code
 echo "Laravel provisioning..."
 
-dirs=( "/code/storage/public" "/code/storage/framework/cache" "/code/storage/framework/sessions" "/code/storage/framework/testing" "/code/storage/framework/views" "/code/storage/logs" )
+dirs=( "/code/public/storage" "/code/storage/public" "/code/storage/framework/cache" "/code/storage/framework/sessions" "/code/storage/framework/testing" "/code/storage/framework/views" "/code/storage/logs" )
 
 for i in "${dirs[@]}"; do
     [ -d "$i" ] || mkdir -p $i
