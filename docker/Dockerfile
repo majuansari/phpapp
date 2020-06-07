@@ -66,6 +66,11 @@ RUN chown -R 9000:9000 storage && \
 	chmod +x artisan && \
 	chmod +x /cmd/provision.sh
 
+# create init script
+RUN echo '#!/bin/sh'                   > /init.sh && \
+	echo 'echo "app init started!"'   >> /init.sh && \
+	echo 'echo "app init completed!"' >> /init.sh && \
+	chmod +x /init.sh
 # cleanup
 USER root
 RUN apt-get clean && \

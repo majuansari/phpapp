@@ -60,7 +60,7 @@ spec:
       initContainers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
-          command: [ "sh", "-c", "/cmd/provision.sh" ]
+          command: [ "sh", "-c", "/init.sh" ]
           imagePullPolicy: Always
           volumeMounts:
             - name: code
