@@ -30,12 +30,46 @@ spec:
         #   emptyDir: {}
         # - name: uploads
         #   emptyDir: {} 
-                   
+      # init container will copy application into the emptydir volume
+      # to share it with php-fpm & nginx containers on the pod
+      initContainers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
+          command: ["/bin/bash","-c","cd /cmdtemp && composer install && echo 'here' && cp -r /cmdtemp/* /codeinit && sleep 10"]
+
+          volumeMounts:
+            - name: code
+              mountPath: /codeinit
+            - name: cmd
+              mountPath: /cmdinit   
+      # initContainers:
+      #   # - args:
+      #   #     - /cd
+      #   #     - -c
+      #   #     - (cd /code ) && (ls /code ) && (composer install || true)  && sleep 100      
+      #   # - args:
+      #   #     - /bin/bash
+      #   #     - -c
+      #   #     - (cd /code ) && (ls /code ) && (composer install || true)  && sleep 100
+      #     image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
+      #     imagePullPolicy: Always
+      #     name: {{ .Chart.Name }}
+      #     volumeMounts:
+      #       - name: code
+      #         mountPath: /code
+      #       - name: cmd
+      #         mountPath: /cmd                        
       containers:
       - name: {{ .Values.app.name }}
         image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
+        volumeMounts:
+          - name: code
+            mountPath: /code
+          - name: cmd
+            mountPath: /cmd         
         ports:
         - containerPort: 9000
+        
 {{- with .Values.app.resources }}
         resources:
 {{ toYaml . | indent 10 }}
@@ -54,33 +88,7 @@ spec:
 {{- with .Values.app.tolerations }}
       tolerations:
 {{ toYaml . | indent 8 }}
-{{- end }}        
-      # init container will copy application into the emptydir volume
-      # to share it with php-fpm & nginx containers on the pod
-      # initContainers:
-      #   - name: {{ .Chart.Name }}
-      #     image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
-      #     command: [ "composer", "install", "-d=/code" ]
-      #     imagePullPolicy: Always
-      #     volumeMounts:
-      #       - name: code
-      #         mountPath: /code
-      #       - name: cmd
-      #         mountPath: /cmd      
-
-      initContainers:
-        - args:
-            - /bin/bash
-            - -c
-            - (composer install -d /code || true)  && sleep 10
-          image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
-          imagePullPolicy: Always
-          name: {{ .Chart.Name }}
-          volumeMounts:
-            - name: code
-              mountPath: /code
-            - name: cmd
-              mountPath: /cmd            
+{{- end }}                        
 ---
 kind: Service
 apiVersion: v1

@@ -51,9 +51,9 @@ EXPOSE 9000 9111
 COPY ./conf/www.conf /usr/local/etc/php-fpm/www.conf
 COPY ./conf/php.ini /usr/local/etc/php/php.ini
 
-COPY ./src/blog /code/
-COPY ./src/blog/env.txt /code/.env
-COPY ./cmd /cmd
+COPY ./src/blog /codetemp/
+COPY ./src/blog/env.txt /codetemp/.env
+COPY ./cmd /cmdtemp
 # WORKDIR /cmd
 # RUN ls
 # RUN ls /
@@ -66,13 +66,6 @@ RUN chown -R 9000:9000 storage && \
 	chgrp -R 9000      bootstrap/cache && \
 	chmod +x artisan && \
 	chmod +x /cmd/provision.sh
-
-# create init script
-RUN echo '#!/bin/sh'                   > /init.sh && \
-	echo 'echo "app init started!"'   >> /init.sh && \
-	echo 'echo "app init completed!"' >> /init.sh && \
-	chmod +x /init.sh
-WORKDIR /cmd
 
 # cleanup
 USER root
