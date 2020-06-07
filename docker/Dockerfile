@@ -52,10 +52,11 @@ COPY ./conf/www.conf /usr/local/etc/php-fpm/www.conf
 COPY ./conf/php.ini /usr/local/etc/php/php.ini
 
 COPY ./src/blog /code/
+COPY ./src/blog/.env /code/.env
 COPY ./cmd /cmd
-WORKDIR /cmd
-RUN ls
-
+# WORKDIR /cmd
+# RUN ls
+# RUN ls /
 WORKDIR /code
 # set requirement privileges
 RUN chown -R 9000:9000 storage && \
