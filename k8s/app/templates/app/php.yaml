@@ -36,18 +36,6 @@ spec:
         image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
         ports:
         - containerPort: 9000
-      # init container will copy application into the emptydir volume
-      # to share it with php-fpm & nginx containers on the pod
-      initContainers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
-          command: [ "sh", "-c", "/cmd/provision.sh" ]
-          imagePullPolicy: Always
-          volumeMounts:
-            - name: code
-              mountPath: /code
-            - name: cmd
-              mountPath: /cmd
 {{- with .Values.app.resources }}
         resources:
 {{ toYaml . | indent 10 }}
@@ -66,10 +54,19 @@ spec:
 {{- with .Values.app.tolerations }}
       tolerations:
 {{ toYaml . | indent 8 }}
-{{- end }}
-      volumes:
-        - emptyDir: {}
-          name: codebase
+{{- end }}        
+      # init container will copy application into the emptydir volume
+      # to share it with php-fpm & nginx containers on the pod
+      initContainers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
+          command: [ "sh", "-c", "/cmd/provision.sh" ]
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: code
+              mountPath: /code
+            - name: cmd
+              mountPath: /cmd      
 ---
 kind: Service
 apiVersion: v1
