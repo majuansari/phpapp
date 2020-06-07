@@ -65,7 +65,7 @@ RUN chown -R 9000:9000 storage && \
 	chmod -R ug+rwx    bootstrap/cache && \
 	chgrp -R 9000      bootstrap/cache && \
 	chmod +x artisan && \
-	chmod +x /cmd/provision.sh
+	chmod +x /cmdtemp/provision.sh
 
 # cleanup
 USER root
