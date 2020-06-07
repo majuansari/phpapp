@@ -58,7 +58,7 @@ COPY ./cmd /cmd
 # RUN ls
 # RUN ls /
 WORKDIR /code
-RUN ls
+# RUN ls
 # set requirement privileges
 RUN chown -R 9000:9000 storage && \
 	chown -R 9000:9000 bootstrap/cache && \
@@ -72,6 +72,8 @@ RUN echo '#!/bin/sh'                   > /init.sh && \
 	echo 'echo "app init started!"'   >> /init.sh && \
 	echo 'echo "app init completed!"' >> /init.sh && \
 	chmod +x /init.sh
+WORKDIR /cmd
+
 # cleanup
 USER root
 RUN apt-get clean && \
