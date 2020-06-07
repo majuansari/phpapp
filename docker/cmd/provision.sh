@@ -16,9 +16,9 @@ chown -R 9000:9000 /code/public/storage
 # # move this to a different container
 composer install 
 
-# php artisan migrate --force
-# php artisan clear-compiled
-# php artisan cache:clear
-# php artisan view:clear
-# php artisan route:clear
-# php artisan config:clear
+php artisan migrate --force
+php artisan clear-compiled
+php artisan cache:clear
+php artisan view:clear
+php artisan route:clear
+php artisan config:clear
