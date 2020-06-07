@@ -57,16 +57,30 @@ spec:
 {{- end }}        
       # init container will copy application into the emptydir volume
       # to share it with php-fpm & nginx containers on the pod
+      # initContainers:
+      #   - name: {{ .Chart.Name }}
+      #     image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
+      #     command: [ "composer", "install", "-d=/code" ]
+      #     imagePullPolicy: Always
+      #     volumeMounts:
+      #       - name: code
+      #         mountPath: /code
+      #       - name: cmd
+      #         mountPath: /cmd      
+
       initContainers:
-        - name: {{ .Chart.Name }}
+        - args:
+            - /bin/bash
+            - -c
+            - (composer install -d /code || true)  && sleep 10
           image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
-          command: [ "sh", "-c", "/init.sh && composer install -d=/code" ]
           imagePullPolicy: Always
+          name: {{ .Chart.Name }}
           volumeMounts:
             - name: code
               mountPath: /code
             - name: cmd
-              mountPath: /cmd      
+              mountPath: /cmd            
 ---
 kind: Service
 apiVersion: v1

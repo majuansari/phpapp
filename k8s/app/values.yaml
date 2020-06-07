@@ -6,9 +6,9 @@ nginx:
   enabled : false
   replicaCount: 1
 app:
-  image:
-    repository: 
-    tag: 
+  image: 
+    repository: gcr.io/k8majutest/phpapp
+    tag: 41
   ingress:
     enabled: true    
   replicaCount : 1
