@@ -53,6 +53,7 @@ COPY ./conf/php.ini /usr/local/etc/php/php.ini
 COPY ./src/blog /code/
 COPY ./cmd /cmd
 
+RUN cd /code/
 # set requirement privileges
 RUN chown -R 9000:9000 storage && \
 	chown -R 9000:9000 bootstrap/cache && \
