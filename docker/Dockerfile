@@ -52,7 +52,8 @@ COPY ./conf/www.conf /usr/local/etc/php-fpm/www.conf
 COPY ./conf/php.ini /usr/local/etc/php/php.ini
 
 COPY ./src/blog /code/
-COPY ./src/blog/.env /code/.env
+COPY ./src/blog/env.txt /code/.env
+RUN cat /code/.env
 COPY ./cmd /cmd
 # WORKDIR /cmd
 # RUN ls
