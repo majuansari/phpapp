@@ -6,6 +6,11 @@ spec:
   selector:
     matchLabels:
       app: {{ .Values.app.name }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 50%
+    type: RollingUpdate      
   replicas: {{ .Values.app.replicaCount }}
   template: # create pods using pod definition in this template
     metadata:
@@ -14,11 +19,35 @@ spec:
       labels:
         app: {{ .Values.app.name }}
     spec:
+      volumes:
+        - name: code
+          emptyDir: {}
+        - name: cmd
+          emptyDir: {}
+        # those should be changed to persistent storage
+        # emptyDir is only for the demo purposes
+        # - name: storage
+        #   emptyDir: {}
+        # - name: uploads
+        #   emptyDir: {} 
+                   
       containers:
       - name: {{ .Values.app.name }}
         image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
         ports:
         - containerPort: 9000
+      # init container will copy application into the emptydir volume
+      # to share it with php-fpm & nginx containers on the pod
+      initContainers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
+          command: [ "sh", "-c", "/cmd/provision.sh" ]
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: code
+              mountPath: /code
+            - name: cmd
+              mountPath: /cmd
 {{- with .Values.app.resources }}
         resources:
 {{ toYaml . | indent 10 }}

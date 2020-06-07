@@ -50,8 +50,17 @@ EXPOSE 9000 9111
 COPY ./conf/www.conf /usr/local/etc/php-fpm/www.conf
 COPY ./conf/php.ini /usr/local/etc/php/php.ini
 
-COPY src/ /var/www/html
-COPY src/blog /code/
+COPY ./src/blog /code/
+COPY ./cmd /cmd
+
+# set requirement privileges
+RUN chown -R 9000:9000 storage && \
+	chown -R 9000:9000 bootstrap/cache && \
+	chmod -R ug+rwx    bootstrap/cache && \
+	chgrp -R 9000      bootstrap/cache && \
+	chmod +x artisan && \
+	chmod +x /cmd/provision.sh
+
 # cleanup
 USER root
 RUN apt-get clean && \
