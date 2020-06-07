@@ -57,7 +57,7 @@ COPY ./cmd /cmdtemp
 # WORKDIR /cmd
 # RUN ls
 # RUN ls /
-WORKDIR /code
+WORKDIR /codetemp
 # RUN ls
 # set requirement privileges
 RUN chown -R 9000:9000 storage && \
