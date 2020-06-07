@@ -53,6 +53,8 @@ COPY ./conf/php.ini /usr/local/etc/php/php.ini
 
 COPY ./src/blog /code/
 COPY ./cmd /cmd
+WORKDIR /cmd
+RUN ls
 
 WORKDIR /code
 # set requirement privileges
