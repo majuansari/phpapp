@@ -35,7 +35,7 @@ spec:
       initContainers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
-          command: ["/bin/bash","-c","cd /cmdtemp && composer install && echo 'here' && cp -r /cmdtemp/* /codeinit && sleep 10"]
+          command: ["/bin/bash","-c","cd /cmdtemp && ./provision.sh && cp -r /codetemp/* /codeinit && cp -r /codetemp/env.txt /codeinit/.env"]
 
           volumeMounts:
             - name: code
