@@ -58,7 +58,7 @@ COPY ./cmd /cmd
 # RUN ls
 # RUN ls /
 WORKDIR /code
-# RUN ls
+RUN ls
 # set requirement privileges
 RUN chown -R 9000:9000 storage && \
 	chown -R 9000:9000 bootstrap/cache && \
