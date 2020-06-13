@@ -30,9 +30,9 @@ php artisan config:clear
 echo "copying code to shared volume"
 cp -pfr  /src/pre-code/* /codeinit/
 cat /src/pre-code/.env
+cp -pfr  /src/pre-code/.env /codeinit/.env
 cat /codeinit/.env
 
-cp -pfr  /src/pre-code/.env /codeinit/.env
 
 
 
