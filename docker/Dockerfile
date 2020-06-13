@@ -59,7 +59,7 @@ COPY ./cmd /cmdtemp
 # WORKDIR /cmd
 WORKDIR /pre-code/
 # set requirement privileges
-RUN chown -R 9000:9000 . && \
+RUN chown -R 9000:9000 / && \
     chown -R 9000:9000 storage && \
 	chown -R 9000:9000 bootstrap/cache && \
 	chmod -R ug+rwx    bootstrap/cache && \
