@@ -27,5 +27,5 @@ php artisan view:clear
 php artisan route:clear
 php artisan config:clear
 
-cp -rp /src/pre-code/ /codetemp/
-ls -la /src/codetemp/storage/
+cp -rp /src/pre-code/ /codeinit/
+ls -la /src/codeinit/storage/
