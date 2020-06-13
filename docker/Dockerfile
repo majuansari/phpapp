@@ -55,6 +55,7 @@ COPY ./src/blog /pre-code/
 COPY ./src/blog/env.txt /pre-code/.env
 COPY ./cmd /cmdtemp
 # WORKDIR /cmd
+WORKDIR /pre-code/
 # set requirement privileges
 RUN chown -R www-data:www-data storage && \
 	chown -R www-data:www-data bootstrap/cache && \
