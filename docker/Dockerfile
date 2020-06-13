@@ -65,7 +65,7 @@ RUN chown -R www-data:www-data storage && \
 	chmod +x /cmdtemp/provision.sh
 
 # cleanup
-USER www-data
+USER root
 RUN apt-get clean && \
 	rm -rfv \
 	/tmp/* \
