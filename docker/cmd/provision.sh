@@ -31,4 +31,4 @@ echo "copying code to shared volume"
 cp -rp /src/pre-code/ /codeinit/
 
 echo "checking the file permissions"
-ls -la /codeinit/storage/
+ls -la /codeinit
