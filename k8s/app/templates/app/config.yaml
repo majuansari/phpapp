@@ -1,106 +1,49 @@
-# apiVersion: v1
-# kind: ConfigMap
-# metadata:
-#   name: backend-config
-# data:
-#     APP_NAME: Shukran
-#     APP_ENV: local
-#     APP_KEY: base64:Cg91nElLLoic2oBD8uATAuOwEDKQCmXviKH27hFA+5I: 
-#     APP_DEBUG: true
-#     APP_LOG_LEVEL: debug
-#     APP_URL: http://localhost
-#     API_HOST: sit2api.shukran.com
-#     API_HOST2: 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+data:
+    APP_NAME: Laravel
+    APP_ENV: local
+    APP_KEY: base64:RLpD93KpHdyO6xTQlp2vAG25LOaJ7EO60c6OciLX8zg=
+    APP_DEBUG: true
+    APP_URL: http://localhost
 
-#     DB_CONNECTION: mysql
-#     DB_HOST: mysql
-#     DB_PORT: 3306
-#     DB_DATABASE: shukran
-#     DB_USERNAME: root
-#     DB_PASSWORD: secret
+    LOG_CHANNEL: stack
 
-#     DB_SLAVE_HOST: mysql
-#     DB_SLAVE_PORT: 3306
-#     DB_SLAVE_DATABASE: shukran
-#     DB_SLAVE_USERNAME: root
-#     DB_SLAVE_PASSWORD: secret
+    DB_CONNECTION: mysql
+    DB_HOST: mysql
+    DB_PORT: 3306
+    DB_DATABASE: blog
+    DB_USERNAME: root
+    DB_PASSWORD: 1234maju
+    MAIL_ENCRYPTION
+    BROADCAST_DRIVER: log
+    CACHE_DRIVER: file
+    QUEUE_CONNECTION: sync
+    SESSION_DRIVER: file
+    SESSION_LIFETIME: 120
 
-#     BROADCAST_DRIVER: log
-#     CACHE_DRIVER: redis
-#     SESSION_DRIVER: file
-#     SESSION_LIFETIME: 120
-#     QUEUE_DRIVER: sync #make sure this is redis because of image resize cache warming
-#     CACHE_PREFIX: local
-#     QUEUE_PREFIX: local
+    REDIS_HOST: 127.0.0.1
+    REDIS_PASSWORD: null
+    REDIS_PORT: 6379
 
-#     REDIS_HOST: redis
-#     REDIS_HOST_2: redis2
-#     REDIS_PASSWORD: null
-#     REDIS_PORT: 6379
+    MAIL_DRIVER: smtp
+    MAIL_HOST: smtp.mailtrap.io
+    MAIL_PORT: 2525
+    MAIL_USERNAME: null
+    MAIL_PASSWORD: null
+    MAIL_ENCRYPTION: null
 
-#     RACKSPACE_USERNAME: shukran_uploads
-#     RACKSPACE_KEY: c181987d345541cab14afe4ad33bf942
-#     RACKSPACE_CONTAINER: uat-shukran
+    AWS_ACCESS_KEY_ID: 
+    AWS_SECRET_ACCESS_KEY: 
+    AWS_DEFAULT_REGION: us-east-1
+    AWS_BUCKET: 
 
-#     RESPONSYS_USERNAME: haAPI@SHK
-#     RESPONSYS_PASSWORD: haAP!@weBorp0S
+    PUSHER_APP_ID: 
+    PUSHER_APP_KEY: 
+    PUSHER_APP_SECRET: 
+    PUSHER_APP_CLUSTER: mt1
 
-#     APP_VERSION: 1
-
-#     CMS_URL: http://cms.local:8001
-
-#     ACCESS_TOKEN_EXPIRY: 150000 #days
-#     REFRESH_TOKEN_EXPIRY: 15 #days
-
-#     SCOUT_QUEUE: false
-#     SCOUT_DRIVER: algolia
-#     ALGOLIA_APP_ID: FMWGQN3EXT
-#     ALGOLIA_SECRET: 62a0697402cadbb24fc1fb0686fba17e
-
-#     #Siebel Soap variable
-#     USERNAME_TOKEN :  "webuser"
-#     PASSWORD_TEXT :  "webuser"
-#     SESSION_TYPE :  "None"
-
-#     USERNAME_TOKEN_UPDATE :  iebuser
-#     PASSWORD_TEXT_UPDATE :  iebuser
-#     SESSION_TYPE_UPDATE :  None
-
-#     UI_BASE_URL: https://situi.shukran.com
-#     APPLE_PASS_SERVER: https://passgccuat.lmsin.net/
-#     IMAGE_RESIZE_URL: https://devimg.shukran.com/
-#     CDN_SECURE_URL: https://c5abdd1f961fb464d18b-81a01fa0b1c168d6440da94649c9b334.ssl.cf3.rackcdn.com
-#     CLOUDFLARE_EMAIL: sreejith.sreekumar@landmarkwebteam.com
-#     CLOUDFLARE_ZONEID: d8054fd6e657e5ef41ffab8c98862eff
-#     CLOUDFLARE_API_KEY: 5a9438eb031b1cee7360e108d6ddbc57cadb8
-
-#     BITLY_SHORTEN_URL: https://api-ssl.bitly.com/v3/shorten
-#     BITLY_ACCESS_TOKEN: afedbf0528c2c1dc462dc721e5344fd6559e2ba0
-
-#     MAIL_DRIVER: smtp
-#     MAIL_HOST: smtp.mailgun.org
-#     MAIL_PORT: 587
-#     MAIL_USERNAME: postmaster@shukran.com
-#     MAIL_PASSWORD: Xx#y*RuY466^MVY5x4BX
-#     MAIL_ENCRYPTION: tls
-#     MAIL_FROM_NAME: Shukran-Support
-#     MAIL_FROM: postmaster@shukran.com
-
-#     VECTRAMIND_USERNAME: lmgtrans
-#     VECTRAMIND_SENDER_ID: Shukran
-#     VECTRAMIND_REFERENCE_ID: 124154324
-#     VECTRAMIND_PASSWORD: Lmg@#789
-
-#     CORS_ALLOW_ORGINS: localhost,situi.shukran.com,cms.local
-
-#     BRANCH_IO_KEY: key_test_ooVjyeIbSHXQhAeK16CerahnCxl0WuJe
-#     BRANCH_IO_KEY_SHORT_LINK: key_test_pdGyd7UNYMGB60aB6d2OHjdhqDcZvvdu
-
-#     KALEYRA_APIKEY: A83bb8851ae5078e8cba302bbd32ba78c
-#     KALEYRA_SENDER_ID: 'MY SHUKRAN'
-#     KALEYRA_URL: 'https://api-global.kaleyra.com/v4/'
-
-
-#     MONETATE_RETAILER_SHORTNAME: landmark
-#     MONETATE_ENGINEAPI_ENDPOINT: https://api.monetate.net/api/engine/v1
-#     MONETATE_CHANNEL_NAME: a-927c8120/d/app.shukranrewards.com
+    MIX_PUSHER_APP_KEY: "${PUSHER_APP_KEY}"
+    MIX_PUSHER_APP_CLUSTER: "${PUSHER_APP_CLUSTER}"

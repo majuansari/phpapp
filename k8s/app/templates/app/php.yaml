@@ -36,6 +36,9 @@ spec:
       # to share it with php-fpm & nginx containers on the pod
       initContainers:
         - name: {{ .Chart.Name }}
+          envFrom:
+            - configMapRef:
+                name: backend-conf        
           image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
           # command: ["/bin/bash","-c","cd /src/cmdtemp && ./provision.sh && cp -r /src/codetemp/* /src/codeinit && cp -r /codetemp/env.txt /codeinit/.env"]
           command: ["/bin/bash","-c","/src/cmdtemp/provision.sh"]
@@ -64,6 +67,9 @@ spec:
       containers:
       - name: {{ .Values.app.name }}
         image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
+        envFrom:
+          - configMapRef:
+              name: backend-conf        
         volumeMounts:
           - name: code
             mountPath: /code

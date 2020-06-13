@@ -55,7 +55,7 @@ COPY ./conf/php.ini /usr/local/etc/php/php.ini
 # RUN ls 
 RUN mkdir -p src
 COPY ./src/blog /src/pre-code/
-COPY ./src/blog/env.txt /src/pre-code/.env
+# COPY ./src/blog/env.txt /src/pre-code/.env
 COPY ./cmd /src/cmdtemp
 # WORKDIR /cmd
 WORKDIR /src/pre-code/

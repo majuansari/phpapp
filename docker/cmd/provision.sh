@@ -28,10 +28,9 @@ php artisan route:clear
 php artisan config:clear
 
 echo "copying code to shared volume"
-cp -pfr  /src/pre-code/* /codeinit/
-cat /src/pre-code/.env
-cp -pfr  /src/pre-code/.env /codeinit/.env
-cat /codeinit/.env
+cp -rp  /src/pre-code/* /codeinit/
+#todo identify why I need to copy .env specifically
+# cp -pfr  /src/pre-code/.env /codeinit/.env
 
 
 
