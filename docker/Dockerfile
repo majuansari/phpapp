@@ -51,6 +51,8 @@ EXPOSE 9000 9111
 COPY ./conf/www.conf /usr/local/etc/php-fpm/www.conf
 COPY ./conf/php.ini /usr/local/etc/php/php.ini
 
+#debug ls below
+RUN ls 
 COPY ./src/blog /pre-code/
 COPY ./src/blog/env.txt /pre-code/.env
 COPY ./cmd /cmdtemp
