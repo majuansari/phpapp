@@ -55,10 +55,8 @@ COPY ./src/blog /codetemp/
 COPY ./src/blog/env.txt /codetemp/.env
 COPY ./cmd /cmdtemp
 # WORKDIR /cmd
-# RUN ls
-# RUN ls /
 WORKDIR /codetemp
-# RUN ls
+RUN ls
 # set requirement privileges
 RUN chown -R 9000:9000 storage && \
 	chown -R 9000:9000 bootstrap/cache && \
