@@ -53,19 +53,20 @@ COPY ./conf/php.ini /usr/local/etc/php/php.ini
 
 #debug ls below
 RUN ls 
-COPY ./src/blog /pre-code/
-COPY ./src/blog/env.txt /pre-code/.env
-COPY ./cmd /cmdtemp
+RUN mkdir -p src
+COPY ./src/blog /src/pre-code/
+COPY ./src/blog/env.txt /src/pre-code/.env
+COPY ./cmd /src/cmdtemp
 # WORKDIR /cmd
-WORKDIR /pre-code/
+WORKDIR /src/pre-code/
 # set requirement privileges
-RUN chown -R 9000:9000 / && \
+RUN chown -R 9000:9000 /src && \
     chown -R 9000:9000 storage && \
 	chown -R 9000:9000 bootstrap/cache && \
 	chmod -R ug+rwx    bootstrap/cache && \
 	chgrp -R 9000      bootstrap/cache && \
 	chmod +x artisan && \
-	chmod +x /cmdtemp/provision.sh
+	chmod +x /src/cmdtemp/provision.sh
 
 # cleanup
 USER root

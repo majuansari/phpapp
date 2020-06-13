@@ -1,22 +1,22 @@
 #!/bin/bash
-cd /pre-code || exit;
+cd /src/pre-code || exit;
 echo "Laravel provisioning...";
 
 
-dirs=("/pre-code/public/storage" "/pre-code/storage/public" "/pre-code/storage/framework/cache" "/pre-code/storage/framework/sessions" "/pre-code/storage/framework/testing" "/pre-code/storage/framework/views" "/pre-code/storage/logs" )
+dirs=("/src/pre-code/public/storage" "/src/pre-code/storage/public" "/src/pre-code/storage/framework/cache" "/src/pre-code/storage/framework/sessions" "/src/pre-code/storage/framework/testing" "/src/pre-code/storage/framework/views" "/src/pre-code/storage/logs" )
 for d in "${dirs[@]}"
 do
     [ -d "$d" ] || mkdir -p $d
 done
 
 
-chown -R 9000:9000 /pre-code
-chown -R 9000:9000 /pre-code/storage
-chown -R 9000:9000 /pre-code/public/storage
-chmod -R 777 /pre-code/storage
-chmod -R 777 /pre-code/public/storage
+chown -R 9000:9000 /src/pre-code
+chown -R 9000:9000 /src/pre-code/storage
+chown -R 9000:9000 /src/pre-code/public/storage
+chmod -R 777 /src/pre-code/storage
+chmod -R 777 /src/pre-code/public/storage
 
-ls -la /pre-code/storage/
+ls -la /src/pre-code/storage/
 # # move this to a different container
 composer install
 
@@ -27,5 +27,5 @@ php artisan view:clear
 php artisan route:clear
 php artisan config:clear
 
-cp -rp /pre-code/ /codetemp/
-ls -la /codetemp/storage/
+cp -rp /src/pre-code/ /codetemp/
+ls -la /src/codetemp/storage/
