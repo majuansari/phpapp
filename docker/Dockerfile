@@ -51,11 +51,10 @@ EXPOSE 9000 9111
 COPY ./conf/www.conf /usr/local/etc/php-fpm/www.conf
 COPY ./conf/php.ini /usr/local/etc/php/php.ini
 
-COPY ./src/blog /codetemp/
-COPY ./src/blog/env.txt /codetemp/.env
+COPY ./src/blog /pre-code/
+COPY ./src/blog/env.txt /pre-code/.env
 COPY ./cmd /cmdtemp
 # WORKDIR /cmd
-WORKDIR /codetemp
 # set requirement privileges
 RUN chown -R www-data:www-data storage && \
 	chown -R www-data:www-data bootstrap/cache && \
