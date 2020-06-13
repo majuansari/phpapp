@@ -38,7 +38,7 @@ spec:
         - name: {{ .Chart.Name }}
           envFrom:
             - configMapRef:
-                name: backend-conf        
+                name: backend-config        
           image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
           # command: ["/bin/bash","-c","cd /src/cmdtemp && ./provision.sh && cp -r /src/codetemp/* /src/codeinit && cp -r /codetemp/env.txt /codeinit/.env"]
           command: ["/bin/bash","-c","/src/cmdtemp/provision.sh"]
@@ -69,7 +69,7 @@ spec:
         image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
         envFrom:
           - configMapRef:
-              name: backend-conf        
+              name: backend-config      
         volumeMounts:
           - name: code
             mountPath: /code
