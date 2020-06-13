@@ -17,7 +17,6 @@ data:
     DB_DATABASE: blog
     DB_USERNAME: root
     DB_PASSWORD: 1234maju
-    MAIL_ENCRYPTION
     BROADCAST_DRIVER: log
     CACHE_DRIVER: file
     QUEUE_CONNECTION: sync
