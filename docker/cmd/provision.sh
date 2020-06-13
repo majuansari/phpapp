@@ -28,7 +28,6 @@ php artisan route:clear
 php artisan config:clear
 
 echo "copying code to shared volume"
-cp -rp /src/pre-code/* /codeinit/
+cp -pfr  /src/pre-code/* /codeinit/
 
-echo "checking the file permissions"
-ls -la /codeinit
+

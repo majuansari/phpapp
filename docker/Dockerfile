@@ -52,7 +52,7 @@ COPY ./conf/www.conf /usr/local/etc/php-fpm/www.conf
 COPY ./conf/php.ini /usr/local/etc/php/php.ini
 
 #debug ls below
-RUN ls 
+# RUN ls 
 RUN mkdir -p src
 COPY ./src/blog /src/pre-code/
 COPY ./src/blog/env.txt /src/pre-code/.env
