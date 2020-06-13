@@ -4,7 +4,7 @@ echo "Laravel provisioning...";
 
 
 
-declare -a dirs=( "/code/public/storage" "/code/storage/public" "/code/storage/framework/cache" "/code/storage/framework/sessions" "/code/storage/framework/testing" "/code/storage/framework/views" "/code/storage/logs" )
+# declare -a dirs=( "/code/public/storage" "/code/storage/public" "/code/storage/framework/cache" "/code/storage/framework/sessions" "/code/storage/framework/testing" "/code/storage/framework/views" "/code/storage/logs" )
 
 # for i in "${dirs[@]}" 
 # do
