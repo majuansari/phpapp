@@ -19,6 +19,8 @@ spec:
       labels:
         app: {{ .Values.app.name }}
     spec:
+      securityContext:
+        runAsUser: 9000
       volumes:
         - name: code
           emptyDir: {}

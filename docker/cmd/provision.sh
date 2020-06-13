@@ -12,8 +12,8 @@ done
 
 chmod -R 777 /pre-code/storage
 chmod -R 777 /pre-code/public/storage
-chown -R www-data:www-data /pre-code/storage
-chown -R www-data:www-data /pre-code/public/storage
+chown -R 9000:9000 /pre-code/storage
+chown -R 9000:9000 /pre-code/public/storage
 
 ls -la /pre-code/storage/
 # # move this to a different container
