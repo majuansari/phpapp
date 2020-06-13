@@ -19,8 +19,8 @@ spec:
       labels:
         app: {{ .Values.app.name }}
     spec:
-      securityContext:
-        runAsUser: 9000
+      # securityContext:
+      #   runAsUser: 9000
       volumes:
         - name: code
           emptyDir: {}
@@ -38,7 +38,7 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
           # command: ["/bin/bash","-c","cd /src/cmdtemp && ./provision.sh && cp -r /src/codetemp/* /src/codeinit && cp -r /codetemp/env.txt /codeinit/.env"]
-           command: ["/bin/bash","-c","./src/cmdtemp/provision.sh"]
+          command: ["/bin/bash","-c","/src/cmdtemp/provision.sh"]
           volumeMounts:
             - name: code
               mountPath: /codeinit
