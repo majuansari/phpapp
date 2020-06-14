@@ -35,4 +35,4 @@
 
 templates/istio/
 # templates/mysql
-# templates/redis
+templates/redis
