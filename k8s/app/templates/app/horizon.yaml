@@ -15,6 +15,11 @@ spec:
       labels:
         app: horizon
     spec:
+      volumes:
+        - name: code
+          emptyDir: {}
+        - name: cmd
+          emptyDir: {}    
       containers:
         - args:
             - /bin/bash
@@ -23,6 +28,11 @@ spec:
           envFrom:
             - configMapRef:
                 name: backend-config
+          volumeMounts:
+            - name: code
+              mountPath: /code
+            - name: cmd
+              mountPath: /cmd                    
           image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
           imagePullPolicy: Always
           name: horizon

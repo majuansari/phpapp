@@ -68,6 +68,8 @@ RUN chown -R 9000:9000 /src && \
 	chmod +x artisan && \
 	chmod +x /src/cmdtemp/provision.sh
 
+WORKDIR /code
+
 # cleanup
 USER root
 RUN apt-get clean && \
