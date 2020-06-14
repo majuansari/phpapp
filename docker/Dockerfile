@@ -59,6 +59,9 @@ COPY ./src/blog /src/pre-code/
 COPY ./cmd /src/cmdtemp
 # WORKDIR /cmd
 WORKDIR /src/pre-code/
+
+RUN composer install --quiet --optimize-autoloader --no-dev
+
 # set requirement privileges
 RUN chown -R 9000:9000 /src && \
     chown -R 9000:9000 storage && \
@@ -67,8 +70,6 @@ RUN chown -R 9000:9000 /src && \
 	chgrp -R 9000      bootstrap/cache && \
 	chmod +x artisan && \
 	chmod +x /src/cmdtemp/provision.sh
-
-WORKDIR /code
 
 # cleanup
 USER root
