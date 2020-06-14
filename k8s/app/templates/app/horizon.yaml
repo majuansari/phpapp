@@ -19,7 +19,7 @@ spec:
         - args:
             - /bin/bash
             - -c
-            - sleep 300
+            - php artisan horizon
           envFrom:
             - configMapRef:
                 name: backend-config
